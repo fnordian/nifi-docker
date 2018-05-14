@@ -15,12 +15,12 @@ prop_rm () {
 prop_add () {
   target_file=${3:-${nifi_props_file}}
   echo 'replacing target file ' ${target_file}
+  echo >> ${target_file}
   echo "$1=$2" >> ${target_file}
 }
 
 
 for varname in $(export | grep -- USER_NIFI_ | cut -d= -f 1 | cut -d" " -f 3); do
-  echo ${varnmae}
   varvalue=${!varname}
   propname=$(echo $varname | sed -e 's/.*USER_NIFI_//' | tr _ .)
 
